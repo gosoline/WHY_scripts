@@ -1,0 +1,9 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_USERS\S-1-5-21-533464717-3789125729-3435979554-1002\SOFTWARE\Microsoft\Windows\CurrentVersion\Lxss\{0cf4c5a4-5317-4d80-9e8a-1099a341cbd7}]
+"State"=dword:00000001
+"DistributionName"="openEuler-22.03-sp2"
+"Version"=dword:00000002
+"BasePath"="\\\\?\\C:\\WHY\\WHY_software\\openEuler-22.03-sp2"
+"Flags"=dword:0000000f
+"DefaultUid"=dword:000003e8
