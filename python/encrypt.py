@@ -45,14 +45,13 @@ class RemoveAnnotationsTransformer(ast.NodeTransformer):
             return new_node
 
 
-class Encrypt():
+class Encrypt:
     '''
     利用cython实现python项目代码加密,保留`'main.py','manage.py'`为入口文件
     '''
 
     # setup.py文件的源码格式
-    setup_fmt= \
-        r'''
+    setup_fmt = r'''
 try:
     from distutils.core import setup
     from traceback import print_exc
@@ -88,8 +87,9 @@ except:
         self.src_path = Path(src_path).absolute()
         # 目的路径,默认为源码根目录下 ${源码目录名}.encrypt
         if dst_path is None:
-            self.dst_path = Path(self.src_path.parent /
-                                 (self.src_path.name + '.encrypt')).absolute()
+            self.dst_path = Path(
+                self.src_path.parent / (self.src_path.name + '.encrypt')
+            ).absolute()
         else:
             self.dst_path = Path(dst_path).absolute()
         # 目的路径不能与源路径相同
@@ -131,7 +131,7 @@ except:
     def specified_pylist(self, pylist: list[Path | str]):
         """
         ~:指定项目内要加密的文件,只能使用相对于项目文件夹的相对路径
-        
+
         Parameters
         ----------
         - pylist: list[str | Path], 指定项目内要加密的文件,只能使用相对于项目文件夹的相对路径
@@ -177,9 +177,11 @@ except:
         pyfile_count = len(self.pylist)
         print(f'\n\033[33m{"-*-"*30}\033[0m', f'开始加密 {pyfile_count} 个文件')
         for i, pyfile in enumerate(self.pylist, start=1):
-            setup_str = self.setup_fmt.format_map({
-                'pyfile_name': pyfile.name,
-            })
+            setup_str = self.setup_fmt.format_map(
+                {
+                    'pyfile_name': pyfile.name,
+                }
+            )
             setup_file = pyfile.parent / 'setup.py'
             setup_file.write_text(setup_str, encoding='utf8')
             # 切换到要加密文件的根目录
@@ -199,7 +201,7 @@ except:
     def search_py(self, folder: Path):
         """
         ~:递归搜索python文件,并处理
-        
+
         Parameters
         ----------
         """
@@ -228,15 +230,15 @@ except:
     def clean(self, pyfile: Path):
         """
         ~:清理中间文件及源码文件
-        
+
         Parameters
         ----------
         """
         for path in [
-                'build',
-                pyfile.stem + '.c',
-                pyfile.stem + '.py',
-                'setup.py',
+            'build',
+            pyfile.stem + '.c',
+            pyfile.stem + '.py',
+            'setup.py',
         ]:
             path = pyfile.parent / path
             if path.exists():

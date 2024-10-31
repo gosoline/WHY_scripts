@@ -42,18 +42,18 @@ def replace_images_link(
         raise ValueError("不支持的代理选项")
 
     # 替换图片链接
-    markdown_text_new = re.sub(markdown_image_pattern, fr'![\1]({base_url}\2)',
-                               markdown_text)
+    markdown_text_new = re.sub(
+        markdown_image_pattern, fr'![\1]({base_url}\2)', markdown_text
+    )
     # 生成 HTML 链接
     if html_link:
-        html_text = re.sub(markdown_image_pattern,
-                           fr'<img src="{base_url}\2" alt="\1">',
-                           markdown_text)
+        html_text = re.sub(
+            markdown_image_pattern, fr'<img src="{base_url}\2" alt="\1">', markdown_text
+        )
         markdown_text_new = html_text
 
     # 将修改后的内容写回文件
-    output_file_path = file_path.parent / (file_path.stem + '.new' +
-                                           file_path.suffix)
+    output_file_path = file_path.parent / (file_path.stem + '.new' + file_path.suffix)
     with open(output_file_path, 'w', encoding='utf-8') as file:
         file.write(markdown_text_new)
 

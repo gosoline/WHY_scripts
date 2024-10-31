@@ -20,7 +20,7 @@ __all__ = ['get_decimal_places', 'values_at']
 def get_decimal_places(number: float) -> int:
     '''
     ~:获取数字小数位数
-    
+
     Parameters
     ----------
     - number: float, 数字
@@ -82,15 +82,15 @@ def values_at(
         else:
             label_loc = 0.5
     if is_time:
-        values = (pd.to_datetime(values, format=format) -
-                  pd.to_datetime(0)).apply(pd.Timedelta.total_seconds)
+        values = (pd.to_datetime(values, format=format) - pd.to_datetime(0)).apply(
+            pd.Timedelta.total_seconds
+        )
         interval_size = pd.to_timedelta(interval_size).total_seconds()
-        label_point = (pd.to_datetime(label_point) -
-                       pd.to_datetime(0)).total_seconds()
+        label_point = (pd.to_datetime(label_point) - pd.to_datetime(0)).total_seconds()
 
     values_at_: pd.Series | float = (
-        (values - label_point + interval_size * label_loc) //
-        interval_size) * interval_size + label_point
+        (values - label_point + interval_size * label_loc) // interval_size
+    ) * interval_size + label_point
 
     decimal_list = []
     # decimal_list.append(values.apply(get_decimal_places).max())

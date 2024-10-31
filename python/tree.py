@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import Callable
 
 
-class Tree():
+class Tree:
     """
     目录树
     """
@@ -20,8 +20,7 @@ class Tree():
     branch = ['│', '└─', '├─']
     branch_bold = ['┃', '┗━', '┣━']
 
-    def __init__(self) -> None:
-        ...
+    def __init__(self) -> None: ...
 
     def _print_tree(
         self,
@@ -43,7 +42,9 @@ class Tree():
 
             if i == total_entries - 1:
                 pre_branch = f"{self.branch[1]} "
-                new_indent = indent + "    " if is_last else indent + f"{self.branch[0]}   "
+                new_indent = (
+                    indent + "    " if is_last else indent + f"{self.branch[0]}   "
+                )
             else:
                 pre_branch = f"{self.branch[2]} "
                 new_indent = indent + f"{self.branch[0]}   "
@@ -72,14 +73,14 @@ class Tree():
     ) -> None:
         """
         ~:打印树结构
-        
+
         Parameters
         ----------
         - path: str = None, 树的路径,为None表示当前路径
         - depth: int = None, 树的深度,为None表示不限制深度
         - bold: bool = True, 是否加粗显示
         - filter_: Callable[[Path], bool] = None, 过滤器函数,为None表示不执行过滤
-    
+
         Returns
         -------
         - None
@@ -93,9 +94,7 @@ class Tree():
         else:
             self.branch = Tree.branch
 
-        print(
-            f'{self.root_icon}{self.YELLOW}{self.path.absolute().name}{self.WHITE}'
-        )
+        print(f'{self.root_icon}{self.YELLOW}{self.path.absolute().name}{self.WHITE}')
 
         self._print_tree(
             path=self.path,

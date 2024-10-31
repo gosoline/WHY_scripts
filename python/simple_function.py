@@ -21,6 +21,7 @@ def get_month_FL(
     date: pd.Timestamp = pd.to_datetime(date)
 
     first_day_of_last_month = pd.Timestamp(
-        year=date.year, month=date.month, day=1) + pd.offsets.MonthBegin(n)
+        year=date.year, month=date.month, day=1
+    ) + pd.offsets.MonthBegin(n)
     last_day_of_last_month = first_day_of_last_month + pd.offsets.MonthEnd(1)
     return first_day_of_last_month, last_day_of_last_month
