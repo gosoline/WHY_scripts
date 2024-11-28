@@ -44,19 +44,6 @@ ys_hg_prompt_info() {
     fi
 }
 
-# 添加环境变量在 ohmyzsh的zshrc中:
-# export ZSH=${ohmyzsh根目录}.oh-my-zsh
-# export ZSH_COMPDUMP=$HOME/.zcompdump  # 否则会[出现`rm: 无法删除 xxx`]
-# export XDG_CONFIG_HOME=$HOME/.config  # 否则会出现权限问题
-# export CONDARC=$HOME/.condarc  # 否则会出现权限问题
-# ZSH_THEME="why_ys"  设置主题
-
-# 在`/etc/zshrc`中:
-# source ${zsh.d根目录}/ohmyzsh.zshrc
-# source ${zsh.d根目录}/conda.zshrc
-
-# 在`/etc/zshrc`中:先source ohmyzsh的zshrc,再source conda的zshrc,否则会[出现PYTHON_VERSION显示不正确]
-
 # Conda info
 local conda_info='$(conda_prompt_info)'
 conda_prompt_info(){
