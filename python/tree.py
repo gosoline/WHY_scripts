@@ -34,7 +34,11 @@ class Tree:
         ~:递归打印目录树方法
         '''
         entries: list[Path] = list(filter(filter_, Path(path).iterdir()))
-        entries.sort()
+        dirs = [e for e in entries if e.is_dir()]
+        files = [e for e in entries if e.is_file()]
+        # 合并目录和文件，目录在前，文件在后
+        entries = dirs + files
+        total_entries = len(entries)
         total_entries = len(entries)
         for i, entry in enumerate(entries):
             is_dir = entry.is_dir()
